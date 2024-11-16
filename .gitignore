@@ -1,0 +1,6 @@
+.DS_Store
+# Ignore the .venv folder in the root directory
+.venv/
+
+# Ignore the .venv folder inside the azure-vote directory
+azure-vote/.venv/
