@@ -33,10 +33,22 @@ middleware = FlaskMiddleware(app,
                               sampler=ProbabilitySampler(1.0))
 
 # Redis configuration
-redis_host = 'localhost'
-redis_port = 6380
-r = redis.Redis(host=redis_host, port=redis_port)
-
+#redis_host = 'localhost'
+#redis_port = 6380
+#r = redis.Redis(host=redis_host, port=redis_port)
+redis_server = os.environ['REDIS']
+# Redis Connection to another container
+try:
+    if "REDIS_PWD" in os.environ:
+        r = redis.StrictRedis(host=redis_server,
+                port=6379,
+                password=os.environ['REDIS_PWD'])
+    else:
+        r = redis.Redis(redis_server)
+    r.ping()
+except redis.ConnectionError:
+    exit('Failed to connect to Redis, terminating.')
+    
 # Load environment variables or default configuration
 button1 = os.getenv('VOTE1VALUE', app.config['VOTE1VALUE'])
 button2 = os.getenv('VOTE2VALUE', app.config['VOTE2VALUE'])
