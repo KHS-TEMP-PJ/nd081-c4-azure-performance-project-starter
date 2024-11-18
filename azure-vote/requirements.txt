@@ -7,15 +7,5 @@ redis==3.5.3
 jinja2==3.0.3
 itsdangerous==2.1.0
 werkzeug==2.2.2
-prometheus-client==0.21.0
-
-Flask==2.2.2
-opencensus==0.11.2
-opencensus-ext-azure==1.1.9
-opencensus-ext-flask==0.8.2
-opencensus-ext-prometheus==0.2.1
-redis==3.5.3
-jinja2==3.0.3
-itsdangerous==2.1.0
-werkzeug==2.2.2
 prometheus-client==0.13.1
+urllib3==1.26.15

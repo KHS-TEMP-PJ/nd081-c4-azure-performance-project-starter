@@ -66,9 +66,11 @@ def index():
             # Increment the selected vote
             r.incr(vote, 1)
 
-            # Log vote action
-            logger.info('Vote recorded', extra={'custom_dimensions': {'Voted For': vote}})
-
+            # Log vote action with distinct custom events
+            if vote == button1:
+                logger.info('Cats Vote')
+            elif vote == button2:
+                logger.info('Dogs Vote')
         # Redirect to avoid form re-submission on page reload
         return redirect(url_for('index'))
 
@@ -86,6 +88,7 @@ def index():
 
 if __name__ == "__main__":
     # Local development
-    app.run(debug=True)
+    #app.run(debug=True)
+    app.run(host='0.0.0.0', port=5000)
     # Deployment (uncomment for production)
     # app.run(host='0.0.0.0', threaded=True, debug=True)
